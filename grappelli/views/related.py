@@ -16,6 +16,8 @@ from django.contrib.admin.utils import prepare_lookup_value
 from django.core.serializers.json import DjangoJSONEncoder
 from django.apps import apps
 from django.utils.safestring import SafeText
+from django.utils.html import escape
+
 
 # GRAPPELLI IMPORTS
 from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
@@ -23,8 +25,8 @@ from grappelli.settings import AUTOCOMPLETE_LIMIT, AUTOCOMPLETE_SEARCH_FIELDS
 
 def get_label(f):
     if getattr(f, "related_label", None):
-        return f.related_label()
-    return smart_text(f)
+        return escape(f.related_label())
+    return escape(smart_text(f))
 
 
 def get_label_safe(f):
